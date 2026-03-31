@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://567hldt6q842"]
+
+[ext_resource type="Script" uid="uid://gkujy5es2vny" path="res://scripts/bird.gd" id="1_3po83"]
+[ext_resource type="Texture2D" uid="uid://c6odjljsv4stn" path="res://assets/bird.png" id="1_kqhkv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l7ej2"]
+radius = 64.0
+
+[node name="Bird" type="RigidBody2D" unique_id=1430934753 node_paths=PackedStringArray("sprite")]
+mass = 0.5
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_3po83")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1981576473]
+texture = ExtResource("1_kqhkv")
+region_enabled = true
+region_rect = Rect2(46, 84, 146, 102.737656)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2052944911]
+shape = SubResource("CircleShape2D_l7ej2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

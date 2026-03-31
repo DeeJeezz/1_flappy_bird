@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bht7w1y1m3xrv"]
+
+[ext_resource type="Script" uid="uid://bptr876w03hvc" path="res://scripts/game_manager.gd" id="1_hwd4i"]
+
+[node name="GameManager" type="Node2D" unique_id=308232173 node_paths=PackedStringArray("wall_spawn_timer")]
+script = ExtResource("1_hwd4i")
+wall_spawn_timer = NodePath("WallSpawnTimer")
+
+[node name="WallSpawnTimer" type="Timer" parent="." unique_id=1127301159]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="WallSpawnTimer" to="." method="_on_wall_spawn_timer_timeout"]

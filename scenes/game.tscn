@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dfp32b3tschpr"]
+
+[ext_resource type="PackedScene" uid="uid://567hldt6q842" path="res://scenes/bird.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://bht7w1y1m3xrv" path="res://scenes/game_manager.tscn" id="2_yqjtg"]
+
+[node name="Game" type="Node2D" unique_id=1795506977]
+
+[node name="Bird" parent="." unique_id=449312139 instance=ExtResource("1_uwrxv")]
+
+[node name="GameManager" parent="." unique_id=308232173 node_paths=PackedStringArray("walls") instance=ExtResource("2_yqjtg")]
+walls = NodePath("../Walls")
+
+[node name="Walls" type="Node2D" parent="." unique_id=1902746496]
