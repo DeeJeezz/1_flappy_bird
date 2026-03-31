@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://567hldt6q842"]
 
 [ext_resource type="Script" uid="uid://gkujy5es2vny" path="res://scripts/bird.gd" id="1_3po83"]
-[ext_resource type="Texture2D" uid="uid://c6odjljsv4stn" path="res://assets/bird.png" id="1_kqhkv"]
+[ext_resource type="Texture2D" uid="uid://ichinbdytp4o" path="res://assets/3lR7zog.md.png" id="2_3po83"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l7ej2"]
-radius = 64.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hq4t0"]
+radius = 32.0
+height = 96.0
 
 [node name="Bird" type="RigidBody2D" unique_id=1430934753 node_paths=PackedStringArray("sprite")]
 mass = 0.5
@@ -15,11 +16,12 @@ script = ExtResource("1_3po83")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1981576473]
-texture = ExtResource("1_kqhkv")
-region_enabled = true
+scale = Vector2(0.44928834, 0.44928828)
+texture = ExtResource("2_3po83")
 region_rect = Rect2(46, 84, 146, 102.737656)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2052944911]
-shape = SubResource("CircleShape2D_l7ej2")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_hq4t0")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

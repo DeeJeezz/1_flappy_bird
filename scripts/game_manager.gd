@@ -19,28 +19,30 @@ func _ready() -> void:
 	
 	_lower_wall_spawn_position = Vector2(
 		_screen_size.x + _SPAWN_OFFSET_X,
-		0,
+		_screen_size.y,
 	)
 	_upper_wall_spawn_position = Vector2(
 		_screen_size.x + _SPAWN_OFFSET_X,
-		_screen_size.y,
+		0,
 	)
 
 
-func _randomize_wall_height(wall: Wall) -> void:
-	wall.scale.y = randf_range(1, 2)
+func _randomize_passage_between_walls(lower_wall: Wall, upper_wall: Wall) -> void:
+	upper_wall.position.y += randi_range(-50, 150)
+	lower_wall.position.y = upper_wall.position.y + randi_range(450, 550)
+		
 	
-
 
 func _spawn_walls() -> void:
 	var lower_wall: Wall = wall_scene.instantiate()
 	lower_wall.position = _lower_wall_spawn_position
-	_randomize_wall_height(lower_wall)
 	walls.add_child(lower_wall)
 	var upper_wall: Wall = wall_scene.instantiate()
 	upper_wall.position = _upper_wall_spawn_position
-	_randomize_wall_height(upper_wall)
+	upper_wall.rotation_degrees = 180
 	walls.add_child(upper_wall)
+	
+	_randomize_passage_between_walls(lower_wall, upper_wall)
 
 
 func _on_wall_spawn_timer_timeout() -> void:
