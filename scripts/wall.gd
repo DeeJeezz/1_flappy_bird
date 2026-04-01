@@ -14,5 +14,5 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	position.x -= _MOVEMENT_SPEED * delta
-	if global_position.x < _DESTROY_BORDER:
+	if position.x < _DESTROY_BORDER:
 		queue_free()
