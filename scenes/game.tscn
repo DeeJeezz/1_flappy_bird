@@ -19,7 +19,7 @@ ui = NodePath("../UI")
 
 [node name="Background" type="Parallax2D" parent="." unique_id=1060217538]
 repeat_size = Vector2(2560, 0)
-autoscroll = Vector2(-100, 0)
+autoscroll = Vector2(-200, 0)
 follow_viewport = false
 script = ExtResource("2_u5sy4")
 
@@ -35,7 +35,7 @@ texture = ExtResource("4_u5sy4")
 
 [node name="Foreground" type="Parallax2D" parent="." unique_id=940926477]
 repeat_size = Vector2(5120, 0)
-autoscroll = Vector2(-200, 0)
+autoscroll = Vector2(-300, 0)
 script = ExtResource("2_u5sy4")
 
 [node name="Cloud1" type="Sprite2D" parent="Foreground" unique_id=2028175118]
@@ -59,6 +59,5 @@ position = Vector2(640, 725)
 position = Vector2(178, 305)
 
 [node name="UI" parent="." unique_id=670188726 instance=ExtResource("4_lbhrr")]
-visible = false
 offset_right = 1280.0
 offset_bottom = 720.0

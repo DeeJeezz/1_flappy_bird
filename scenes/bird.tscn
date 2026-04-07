@@ -11,7 +11,6 @@ radius = 32.0
 height = 96.0
 
 [node name="Bird" type="RigidBody2D" unique_id=1430934753]
-mass = 0.5
 can_sleep = false
 contact_monitor = true
 max_contacts_reported = 1

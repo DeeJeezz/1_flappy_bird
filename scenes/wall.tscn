@@ -3,16 +3,26 @@
 [ext_resource type="Script" uid="uid://cmotmokyji6bq" path="res://scripts/wall.gd" id="1_wykyb"]
 [ext_resource type="Texture2D" uid="uid://vwpm1slgsjne" path="res://assets/img/pipe.png" id="2_2ktk7"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ktk7"]
+load_path = "res://.godot/imported/pipe.png-ba3d3e4578a562d58d5c31b615bf2dab.ctex"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ktk7"]
-size = Vector2(96, 296)
+size = Vector2(96, 400)
 
 [node name="Wall" type="StaticBody2D" unique_id=2069323154 groups=["Death"]]
 script = ExtResource("1_wykyb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1326986435]
+position = Vector2(0, -56)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_2ktk7")
 
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1564933128]
+position = Vector2(0, 145)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("CompressedTexture2D_2ktk7")
+region_enabled = true
+region_rect = Rect2(0, 393.89703, 223, 206.10297)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1713591804]
-position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_2ktk7")

@@ -8,10 +8,10 @@
 script = ExtResource("1_cjuko")
 
 [node name="LowerWall" parent="." unique_id=2069323154 instance=ExtResource("1_7ukg5")]
-position = Vector2(0, 250)
+position = Vector2(0, 288)
 
 [node name="UpperWall" parent="." unique_id=632003047 instance=ExtResource("1_7ukg5")]
-position = Vector2(0, -250)
+position = Vector2(0, -288)
 rotation = -3.1415927
 
 [node name="ScoreArea" parent="." unique_id=1858655218 instance=ExtResource("2_drdry")]
