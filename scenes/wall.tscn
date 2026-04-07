@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://c40jt10pvdhmf"]
 
-[ext_resource type="Script" uid="uid://cmotmokyji6bq" path="res://scripts/wall.gd" id="1_wykyb"]
 [ext_resource type="Texture2D" uid="uid://vwpm1slgsjne" path="res://assets/img/pipe.png" id="2_2ktk7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ktk7"]
@@ -9,8 +8,7 @@ load_path = "res://.godot/imported/pipe.png-ba3d3e4578a562d58d5c31b615bf2dab.cte
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ktk7"]
 size = Vector2(96, 400)
 
-[node name="Wall" type="StaticBody2D" unique_id=2069323154 groups=["Death"]]
-script = ExtResource("1_wykyb")
+[node name="Wall" type="StaticBody2D" unique_id=2069323154 groups=["Death", "Obstacle"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1326986435]
 position = Vector2(0, -56)

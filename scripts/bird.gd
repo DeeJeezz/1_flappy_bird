@@ -4,6 +4,7 @@ extends RigidBody2D
 const DEATH_GRAVITY_SCALE: int = 2
 const DEATH_GROUP_NAME: String = "Death"
 const SCORE_GROUP_NAME: String = "Score"
+const OBSTACLE_GROUP_NAME: String = "Obstacle"
 
 const JUMP_VELOCITY: float = -425.0
 
@@ -49,7 +50,7 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(DEATH_GROUP_NAME):
-		if body is Wall:
+		if body.is_in_group(OBSTACLE_GROUP_NAME):
 			hit_sfx.play()
 		else:
 			death_sfx.play()

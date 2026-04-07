@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Signals="*uid://g6lfelgi0ipg"
+SaveManager="*uid://d1pw6es6vx4mh"
 
 [display]
 
@@ -29,6 +30,7 @@ window/stretch/mode="canvas_items"
 
 Death=""
 Score=""
+Obstacle=""
 
 [physics]
 

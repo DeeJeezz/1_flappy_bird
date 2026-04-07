@@ -5,22 +5,28 @@
 [sub_resource type="LabelSettings" id="LabelSettings_xlq6p"]
 font_size = 48
 
-[node name="UI" type="Control" unique_id=670188726 node_paths=PackedStringArray("game_over_panel", "score_label")]
-custom_minimum_size = Vector2(1280, 720)
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="SystemFont" id="SystemFont_nt7q6"]
+font_names = PackedStringArray("Ayuthaya")
+
+[sub_resource type="LabelSettings" id="LabelSettings_x4jx1"]
+font = SubResource("SystemFont_nt7q6")
+font_size = 48
+outline_size = 2
+outline_color = Color(0.38738903, 0.38738897, 0.38738897, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6862745)
+
+[node name="UI" type="CanvasLayer" unique_id=82938282 node_paths=PackedStringArray("game_over_panel", "start_game_panel", "score_label", "session_score_label", "last_score_label")]
 script = ExtResource("1_nt7q6")
 game_over_panel = NodePath("GameOverPanel")
+start_game_panel = NodePath("StartGamePanel")
 score_label = NodePath("ScoreLabel")
+session_score_label = NodePath("GameOverPanel/SessionScoreLabel")
+last_score_label = NodePath("StartGamePanel/LastScoreLabel")
 metadata/_edit_use_anchors_ = true
 
 [node name="GameOverPanel" type="Panel" parent="." unique_id=1523172358]
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -45,25 +51,38 @@ label_settings = SubResource("LabelSettings_xlq6p")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RetryHintLabel" type="Label" parent="GameOverPanel" unique_id=518970569]
+[node name="SessionScoreLabel" type="Label" parent="GameOverPanel" unique_id=653169859]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -90.5
-offset_top = -148.0
-offset_right = 90.5
-offset_bottom = -125.0
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 60.0
+offset_right = 20.0
+offset_bottom = 83.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "Press \"Space\" to retry..."
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Current score: %s"
+
+[node name="RestartButton" type="Button" parent="GameOverPanel" unique_id=1970961245]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 160.0
+offset_right = 40.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=1296917134]
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -74,3 +93,62 @@ grow_horizontal = 2
 text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StartGamePanel" type="Panel" parent="." unique_id=644014840]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LastScoreLabel" type="Label" parent="StartGamePanel" unique_id=1399719415]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -73.0
+offset_right = 49.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Last score: 1"
+
+[node name="GameNameLabel" type="Label" parent="StartGamePanel" unique_id=588289002]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = -160.0
+offset_right = 158.5
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Flappy bird"
+label_settings = SubResource("LabelSettings_x4jx1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartHintLabel" type="Label" parent="StartGamePanel" unique_id=1115909467]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = 212.0
+offset_right = 90.0
+offset_bottom = 235.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press \"Space\" to start..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="GameOverPanel/RestartButton" to="." method="_on_restart_button_button_down"]
