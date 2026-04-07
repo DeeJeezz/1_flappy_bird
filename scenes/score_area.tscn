@@ -1,10 +1,19 @@
 [gd_scene format=3 uid="uid://bvvfytg2mhc7t"]
 
+[ext_resource type="Script" uid="uid://4mw3el6us1oc" path="res://scripts/score_area.gd" id="1_0eo43"]
+[ext_resource type="AudioStream" uid="uid://b1w1n4ptfqon" path="res://assets/audio/sfx/coin.wav" id="2_eo2hd"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m4yhu"]
 size = Vector2(10, 648)
 
-[node name="ScoreArea" type="Area2D" unique_id=1858655218]
-monitoring = false
+[node name="ScoreArea" type="Area2D" unique_id=1858655218 groups=["Score"]]
+monitorable = false
+script = ExtResource("1_0eo43")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1112854403]
 shape = SubResource("RectangleShape2D_m4yhu")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=317180650]
+stream = ExtResource("2_eo2hd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

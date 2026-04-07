@@ -19,9 +19,16 @@ config/icon="res://icon.svg"
 
 Signals="*uid://g6lfelgi0ipg"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 Death=""
+Score=""
 
 [physics]
 

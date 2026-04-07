@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b1l3jguxhhppu"]
+
+[ext_resource type="PackedScene" uid="uid://c40jt10pvdhmf" path="res://scenes/wall.tscn" id="1_7ukg5"]
+[ext_resource type="Script" uid="uid://div7om2y1exk7" path="res://scripts/obstacle.gd" id="1_cjuko"]
+[ext_resource type="PackedScene" uid="uid://bvvfytg2mhc7t" path="res://scenes/score_area.tscn" id="2_drdry"]
+
+[node name="Obstacle" type="Node2D" unique_id=1271222033]
+script = ExtResource("1_cjuko")
+
+[node name="LowerWall" parent="." unique_id=2069323154 instance=ExtResource("1_7ukg5")]
+position = Vector2(0, 250)
+
+[node name="UpperWall" parent="." unique_id=632003047 instance=ExtResource("1_7ukg5")]
+position = Vector2(0, -250)
+rotation = -3.1415927
+
+[node name="ScoreArea" parent="." unique_id=1858655218 instance=ExtResource("2_drdry")]
+position = Vector2(56, -8)

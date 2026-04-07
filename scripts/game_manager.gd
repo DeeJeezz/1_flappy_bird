@@ -4,43 +4,35 @@ extends Node2D
 const _SPAWN_OFFSET_X: float = 100.0
 
 
-@onready var wall_scene: PackedScene = preload("res://scenes/wall.tscn")
-@onready var score_area_scene: PackedScene = preload("res://scenes/score_area.tscn")
+@onready var obstacle_scene: PackedScene = preload("res://scenes/obstacle.tscn")
+@onready var obstacle_spawn_timer: Timer = $ObstacleSpawnTimer
 
-@export var wall_spawn_timer: Timer
-@export var walls: Node2D
+@export var obstacles: Node2D
 @export var ui: UI
 
 
 var _screen_size: Vector2
-var _lower_wall_spawn_position: Vector2
-var _upper_wall_spawn_position: Vector2
-var _score_area_position: Vector2
-var _current_score: int = 0
+var _obstacle_spawn_position: Vector2
+var _current_score: int:
+	set(value):
+		_current_score = value
+		ui.set_score(_current_score)
+
 var _game_over: bool = false
 
 
 func _ready() -> void:
-	# Connect game over signal.
+	# Connect signals.
 	Signals.game_over.connect(_on_game_over)
+	Signals.obstacle_passed.connect(_on_obstacle_passed)
 	
 	# Setup UI.
-	ui.set_score(_current_score)
+	_current_score = 0
 	
 	# Initial settings.
 	_screen_size = get_viewport_rect().size
-	
-	# Initializa constants.
-	_lower_wall_spawn_position = Vector2(
+	_obstacle_spawn_position = Vector2(
 		_screen_size.x + _SPAWN_OFFSET_X,
-		_screen_size.y,
-	)
-	_upper_wall_spawn_position = Vector2(
-		_screen_size.x + _SPAWN_OFFSET_X,
-		0,
-	)
-	_score_area_position = Vector2(
-		_screen_size.x + _SPAWN_OFFSET_X + 60,
 		_screen_size.y / 2,
 	)
 	
@@ -52,34 +44,24 @@ func _process(_delta: float) -> void:
 			get_tree().reload_current_scene()
 
 
-func _randomize_passage_between_walls(lower_wall: Wall, upper_wall: Wall) -> void:
-	upper_wall.position.y += randi_range(-50, 150)
-	# TODO: Сделать расчет расстояния между трубами
-	lower_wall.position.y = upper_wall.position.y + randi_range(450, 550)
-
-
-func _spawn_walls() -> void:
-	var lower_wall: Wall = wall_scene.instantiate()
-	lower_wall.position = _lower_wall_spawn_position
-	walls.add_child(lower_wall)
-	var upper_wall: Wall = wall_scene.instantiate()
-	upper_wall.position = _upper_wall_spawn_position
-	upper_wall.rotation_degrees = 180
+func _spawn_obstacle() -> void:
+	var obstacle: Obstacle = obstacle_scene.instantiate()
+	obstacles.add_child(obstacle)
+	obstacle.position = _obstacle_spawn_position
+	obstacle.randomize_passage_height()
 	
-	var score_area: Area2D = score_area_scene.instantiate()
-	upper_wall.add_child(score_area)
-	score_area.global_position = _score_area_position
-	walls.add_child(upper_wall)
-	
-	_randomize_passage_between_walls(lower_wall, upper_wall)
 
 
 func _on_wall_spawn_timer_timeout() -> void:
-	_spawn_walls()
+	_spawn_obstacle()
+	
+	
+func _on_obstacle_passed() -> void:
+	_current_score += 1
 	
 	
 func _on_game_over() -> void:
 	_game_over = true
 	ui.game_over()
-	wall_spawn_timer.timeout.disconnect(_on_wall_spawn_timer_timeout)
-	#walls.queue_free()
+	obstacle_spawn_timer.timeout.disconnect(_on_wall_spawn_timer_timeout)
+	obstacles.process_mode = Node.PROCESS_MODE_DISABLED

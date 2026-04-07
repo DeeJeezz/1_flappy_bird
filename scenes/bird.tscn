@@ -1,19 +1,21 @@
 [gd_scene format=3 uid="uid://567hldt6q842"]
 
 [ext_resource type="Script" uid="uid://gkujy5es2vny" path="res://scripts/bird.gd" id="1_3po83"]
-[ext_resource type="Texture2D" uid="uid://ichinbdytp4o" path="res://assets/3lR7zog.md.png" id="2_3po83"]
+[ext_resource type="Texture2D" uid="uid://ichinbdytp4o" path="res://assets/img/bird.png" id="2_3po83"]
+[ext_resource type="AudioStream" uid="uid://d3urcopwnuw5j" path="res://assets/audio/sfx/whoop.ogg" id="3_b7mtg"]
+[ext_resource type="AudioStream" uid="uid://cfwyjuxuxygqi" path="res://assets/audio/sfx/hit.wav" id="3_hq4t0"]
+[ext_resource type="AudioStream" uid="uid://wlciledhr7ej" path="res://assets/audio/sfx/death.wav" id="4_twsrt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hq4t0"]
 radius = 32.0
 height = 96.0
 
-[node name="Bird" type="RigidBody2D" unique_id=1430934753 node_paths=PackedStringArray("sprite")]
+[node name="Bird" type="RigidBody2D" unique_id=1430934753]
 mass = 0.5
 can_sleep = false
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_3po83")
-sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1981576473]
 scale = Vector2(0.44928834, 0.44928828)
@@ -23,5 +25,16 @@ region_rect = Rect2(46, 84, 146, 102.737656)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2052944911]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_hq4t0")
+
+[node name="SFX" type="Node2D" parent="." unique_id=1955313731]
+
+[node name="WhoopSFX" type="AudioStreamPlayer2D" parent="SFX" unique_id=1436206312]
+stream = ExtResource("3_b7mtg")
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="SFX" unique_id=2132939080]
+stream = ExtResource("3_hq4t0")
+
+[node name="DeathSFX" type="AudioStreamPlayer2D" parent="SFX" unique_id=2103797649]
+stream = ExtResource("4_twsrt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

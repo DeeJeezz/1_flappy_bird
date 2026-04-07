@@ -1,27 +1,64 @@
 [gd_scene format=3 uid="uid://dfp32b3tschpr"]
 
 [ext_resource type="PackedScene" uid="uid://567hldt6q842" path="res://scenes/bird.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://dwlca1sgln257" path="res://assets/img/background/B1013-5.png" id="2_gee14"]
+[ext_resource type="Script" uid="uid://bvavvyxlljyhx" path="res://scripts/parallax_background.gd" id="2_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://bht7w1y1m3xrv" path="res://scenes/game_manager.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://c23jxhuvsxw3v" path="res://scenes/floor.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cbixiobc1gnon" path="res://scenes/ui.tscn" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://uk735h52yiwh" path="res://assets/img/background/B1013-3.png" id="4_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://b53du4vjy2btf" path="res://assets/img/background/C2010.png" id="4_vtaks"]
+[ext_resource type="Texture2D" uid="uid://c8rjggcnsu8gu" path="res://assets/img/background/C2013.png" id="5_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://b34lyag4ie46c" path="res://assets/img/background/C2012.png" id="6_0tnpc"]
 
 [node name="Game" type="Node2D" unique_id=1795506977]
+
+[node name="GameManager" parent="." unique_id=308232173 node_paths=PackedStringArray("obstacles", "ui") instance=ExtResource("2_yqjtg")]
+obstacles = NodePath("../Obstacles")
+ui = NodePath("../UI")
+
+[node name="Background" type="Parallax2D" parent="." unique_id=1060217538]
+repeat_size = Vector2(2560, 0)
+autoscroll = Vector2(-100, 0)
+follow_viewport = false
+script = ExtResource("2_u5sy4")
+
+[node name="B10135" type="Sprite2D" parent="Background" unique_id=258830897]
+position = Vector2(1920, 360)
+scale = Vector2(2.5, 2.8125)
+texture = ExtResource("2_gee14")
+
+[node name="B10133" type="Sprite2D" parent="Background" unique_id=2060150253]
+position = Vector2(639.99994, 360)
+scale = Vector2(2.4999998, 2.8125)
+texture = ExtResource("4_u5sy4")
+
+[node name="Foreground" type="Parallax2D" parent="." unique_id=940926477]
+repeat_size = Vector2(5120, 0)
+autoscroll = Vector2(-200, 0)
+script = ExtResource("2_u5sy4")
+
+[node name="Cloud1" type="Sprite2D" parent="Foreground" unique_id=2028175118]
+position = Vector2(632, 296)
+texture = ExtResource("4_vtaks")
+
+[node name="Cloud2" type="Sprite2D" parent="Foreground" unique_id=1867662126]
+position = Vector2(2208, 176)
+texture = ExtResource("6_0tnpc")
+
+[node name="Cloud3" type="Sprite2D" parent="Foreground" unique_id=275396718]
+position = Vector2(3992, 336)
+texture = ExtResource("5_kvpfn")
+
+[node name="Obstacles" type="Node2D" parent="." unique_id=1902746496]
+
+[node name="Floor" parent="." unique_id=499287988 instance=ExtResource("3_lnu2h")]
+position = Vector2(640, 725)
 
 [node name="Bird" parent="." unique_id=449312139 instance=ExtResource("1_uwrxv")]
 position = Vector2(178, 305)
 
-[node name="GameManager" parent="." unique_id=308232173 node_paths=PackedStringArray("walls", "ui") instance=ExtResource("2_yqjtg")]
-walls = NodePath("../Walls")
-ui = NodePath("../UI")
-
-[node name="Walls" type="Node2D" parent="." unique_id=1902746496]
-
-[node name="Floor" parent="." unique_id=499287988 instance=ExtResource("3_lnu2h")]
-
 [node name="UI" parent="." unique_id=670188726 instance=ExtResource("4_lbhrr")]
-custom_minimum_size = Vector2(1152, 648)
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0

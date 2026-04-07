@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vwpm1slgsjne"
-path="res://.godot/imported/png-klev-club-o9dc-p-truba-iz-mario-png-16.png-bdd4c29d564a6d50bfdb1819038d195d.ctex"
+uid="uid://bbvragea8j33q"
+path="res://.godot/imported/B1013-4.png-b20fe2ad24896f23e1eb106f4d011d31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/png-klev-club-o9dc-p-truba-iz-mario-png-16.png"
-dest_files=["res://.godot/imported/png-klev-club-o9dc-p-truba-iz-mario-png-16.png-bdd4c29d564a6d50bfdb1819038d195d.ctex"]
+source_file="res://assets/img/background/B1013-4.png"
+dest_files=["res://.godot/imported/B1013-4.png-b20fe2ad24896f23e1eb106f4d011d31.ctex"]
 
 [params]
 
