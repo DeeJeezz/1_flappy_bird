@@ -12,13 +12,6 @@ const _OBSTACLE_Y_MOVEMENT: float = 125
 @onready var score_area: Area2D = $ScoreArea
 
 
-var _screen_size: Vector2
-
-
-func _ready() -> void:
-	_screen_size = get_viewport_rect().size
-
-
 func _randomize_passage_position() -> void:
 	position.y += randf_range(-_OBSTACLE_Y_MOVEMENT, _OBSTACLE_Y_MOVEMENT)
 	position.x += randf_range(-_OBSTACLE_X_MOVEMENT, 0)
