@@ -8,7 +8,7 @@ on:
 
 env:
   GODOT_VERSION: 4.6.1
-  ITCH_GAME: deejeezz/flappy-bird
+  ITCH_GAME: ${{ vars.ITCH_USER_NAME }}/${{ vars.ITCH_GAME_NAME }}
 
 jobs:
   export-web:
