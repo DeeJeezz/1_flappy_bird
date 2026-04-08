@@ -7,6 +7,7 @@ font_size = 48
 
 [sub_resource type="SystemFont" id="SystemFont_nt7q6"]
 font_names = PackedStringArray("Ayuthaya")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_x4jx1"]
 font = SubResource("SystemFont_nt7q6")
@@ -114,7 +115,7 @@ offset_right = 49.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Last score: 1"
+text = "Last score: 0"
 
 [node name="GameNameLabel" type="Label" parent="StartGamePanel" unique_id=588289002]
 layout_mode = 1

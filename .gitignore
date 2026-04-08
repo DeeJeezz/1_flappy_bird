@@ -4,3 +4,6 @@
 
 # Builds
 builds/
+
+# Other
+.DS_Store
