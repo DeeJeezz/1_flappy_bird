@@ -1,6 +1,13 @@
 # Flappy bird
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/deejeezz/1_flappy_bird/deploy-itch.yml)
+![GitHub Tag](https://img.shields.io/github/v/tag/deejeezz/1_flappy_bird)
+
 https://20_games_challenge.gitlab.io/games/flappy/
+
+## Where to play
+
+Itch.io - https://deejeezz.itch.io/flappy-bird
 
 Flappy bird was a mobile game from 2013. It was a sleeper hit, gaining sudden and massive popularity in 2014, likely due to attention from a popular YouTuber at that time. The game was removed from the App store after it’s sudden popularity due to negative media attention.
 
