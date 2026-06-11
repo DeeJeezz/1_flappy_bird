@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-pages-artifact@v4
       with:
         name: 'build'
-        path: '${BUILD_DIR}'
+        path: 'builds/web'
 
   deploy-itch:
     needs: build
@@ -58,7 +58,7 @@ jobs:
         uses: actions/download-artifact@v3.1.0
         with:
           name: 'build'
-          path: '${BUILD_DIR}'
+          path: 'builds/web'
 
       - name: Push to itch.io
         env:
