@@ -55,7 +55,7 @@ jobs:
           chmod +x butler-bin/butler
 
       - name: Download a Build Artifact
-        uses: actions/download-artifact@v3.1.0
+        uses: actions/download-artifact@v8
         with:
           name: 'build'
           path: 'builds/web'
@@ -74,7 +74,7 @@ jobs:
       pages: write
       id-token: write
     environment:
-      name: github-pages
+      name: build
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
