@@ -74,7 +74,7 @@ jobs:
       pages: write
       id-token: write
     environment:
-      name: build
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
@@ -84,4 +84,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          artifact_name: 'build'
 
