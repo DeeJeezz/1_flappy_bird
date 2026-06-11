@@ -39,17 +39,17 @@ jobs:
         run: |
           ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --export-release "Web" ${BUILD_DIR}/index.html
 
-      - name: Install Butler
-        run: |
-          curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
-          unzip butler.zip -d butler-bin
-          chmod +x butler-bin/butler
+      # - name: Install Butler
+      #   run: |
+      #     curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
+      #     unzip butler.zip -d butler-bin
+      #     chmod +x butler-bin/butler
 
-      - name: Push to itch.io
-        env:
-          BUTLER_API_KEY: ${{ secrets.ITCH_API_KEY }}
-        run: |
-          ./butler-bin/butler push ${BUILD_DIR} ${ITCH_GAME}:html5 --userversion ${GITHUB_REF_NAME}
+      # - name: Push to itch.io
+      #   env:
+      #     BUTLER_API_KEY: ${{ secrets.ITCH_API_KEY }}
+      #   run: |
+      #     ./butler-bin/butler push ${BUILD_DIR} ${ITCH_GAME}:html5 --userversion ${GITHUB_REF_NAME}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -57,8 +57,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: ${BUILD_DIR}
+          path: 'builds/web'
 
       - name: Deploy to GitHub Pages
         id: deployment
