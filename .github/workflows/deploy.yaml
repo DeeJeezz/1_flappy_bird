@@ -9,6 +9,7 @@ on:
 env:
   GODOT_VERSION: 4.6.1
   ITCH_GAME: ${{ vars.ITCH_USER_NAME }}/${{ vars.ITCH_GAME_NAME }}
+  BUILD_DIR: builds/web
 
 jobs:
   export-web:
@@ -19,7 +20,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Create build directory
-        run: mkdir -p build/web
+        run: mkdir -p ${BUILD_DIR}
 
       - name: Download Godot
         run: |
@@ -36,13 +37,7 @@ jobs:
 
       - name: Export Web Build
         run: |
-          ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --export-release "Web" build/web/index.html
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: web
-          path: builds/web
+          ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --export-release "Web" ${BUILD_DIR}/index.html
 
       - name: Install Butler
         run: |
@@ -54,10 +49,18 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.ITCH_API_KEY }}
         run: |
-          ./butler-bin/butler push build/web ${ITCH_GAME}:html5 --userversion ${GITHUB_REF_NAME}
-      - name: Deploy to GitHub Pages 
-        uses: JamesIves/github-pages-deploy-action@releases/v4
+          ./butler-bin/butler push ${BUILD_DIR} ${ITCH_GAME}:html5 --userversion ${GITHUB_REF_NAME}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: main
-          FOLDER: builds/web
+          # Upload entire repository
+          path: ${BUILD_DIR}
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
