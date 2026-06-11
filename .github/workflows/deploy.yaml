@@ -1,4 +1,4 @@
-name: Build and Deploy to itch.io
+name: Build and Deploy
 
 on:
   push:
@@ -38,6 +38,12 @@ jobs:
         run: |
           ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --export-release "Web" build/web/index.html
 
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: web
+          path: builds/web
+
       - name: Install Butler
         run: |
           curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
@@ -49,3 +55,14 @@ jobs:
           BUTLER_API_KEY: ${{ secrets.ITCH_API_KEY }}
         run: |
           ./butler-bin/butler push build/web ${ITCH_GAME}:html5 --userversion ${GITHUB_REF_NAME}
+      # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
+      - name: Install rsync
+        run: |
+           apt-get update && apt-get install -y rsync
+
+      - name: Deploy to GitHub Pages 
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: main
+          FOLDER: builds/web
