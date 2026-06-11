@@ -55,13 +55,8 @@ jobs:
           BUTLER_API_KEY: ${{ secrets.ITCH_API_KEY }}
         run: |
           ./butler-bin/butler push build/web ${ITCH_GAME}:html5 --userversion ${GITHUB_REF_NAME}
-      # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
-      - name: Install rsync
-        run: |
-           apt-get update && apt-get install -y rsync
-
       - name: Deploy to GitHub Pages 
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: main
