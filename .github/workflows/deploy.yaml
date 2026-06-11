@@ -41,7 +41,8 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v4
       with:
-        path: 'builds/web'
+        name: 'build'
+        path: '${BUILD_DIR}'
 
   deploy-itch:
     needs: build
@@ -52,6 +53,12 @@ jobs:
           curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
           unzip butler.zip -d butler-bin
           chmod +x butler-bin/butler
+
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.1.0
+        with:
+          name: 'build'
+          path: '${BUILD_DIR}'
 
       - name: Push to itch.io
         env:
